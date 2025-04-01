@@ -1,0 +1,21 @@
+---
+linters:
+  enable-all: true
+  disable:
+    - err113
+    - wsl
+    - lll
+    - godot
+    - nlreturn
+    - godox
+    - tagliatelle
+    - ireturn
+    - varnamelen
+    - exhaustive
+    - exhaustruct
+    - nonamedreturns
+    - musttag
+    - depguard
+    - tagalign
+    - gomoddirectives
+    - tenv # WARN The linter 'tenv' is deprecated (since v1.64.0) due to: Duplicate feature another linter. Replaced by usetesting.
