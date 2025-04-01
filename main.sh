@@ -15,6 +15,7 @@ patterns=(
 	's|\(\*cli\.Context\) error|(context.Context, *cli.Command) error|'
 	's|ExitErrHandler = func\(\*cli\.Context, error\)|ExitErrHandler = func(context\.Context, *cli.Command, error)|'
 	's|\*cli\.Context|context.Context|'
+	's|EnvVars: \[\]string\{([^}]+)\}|Sources: cli.EnvVars(\1)|'
 	's|EnvVars: \[\]string|Sources: cli.EnvVars|'
 )
 
