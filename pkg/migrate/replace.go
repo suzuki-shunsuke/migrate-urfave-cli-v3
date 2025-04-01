@@ -10,6 +10,7 @@ func newReplacers() ([]*Replacer, error) {
 		newReplacer(`"github\.com/urfave/cli/v2"`, `"github.com/urfave/cli/v3"`),
 		newReplacer(`"github\.com/urfave/cli/v2/altsrc"`, `"github.com/urfave/cli-altsrc/v3"`),
 		newReplacer(`cli\.App`, `cli.Command`),
+		newReplacer(`[*&]?cli\.Author`, `any`),
 		newReplacer(`EnableBashCompletion`, `EnableShellCompletion`),
 		newReplacer(`RunContext`, `Run`),
 		newReplacer(`Subcommands`, `Commands`),
