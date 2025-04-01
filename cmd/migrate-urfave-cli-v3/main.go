@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"io"
 	"log"
 	"os"
 	"os/exec"
@@ -55,11 +54,11 @@ func newReplacers() ([]*Replacer, error) {
 		newReplacer(`Subcommands`, `Commands`),
 		newReplacer(`CustomAppHelpTemplate`, `CustomRootCommandHelpTemplate`),
 		newReplacer(`cli\.NewApp\(\)`, `&cli.Command{}`),
-		newReplacer(`\(([^ ]+?) \*cli\.Context\) error`, `(ctx context.Context, \1 *cli.Command) error`),
+		newReplacer(`\(([^ ]+?) \*cli\.Context\) error`, `(ctx context.Context, $1 *cli.Command) error`),
 		newReplacer(`\(\*cli\.Context\) error`, `(context.Context, *cli.Command) error`),
 		newReplacer(`ExitErrHandler = func\(\*cli\.Context, error\)`, `ExitErrHandler = func(context\.Context, *cli.Command, error)`),
 		newReplacer(`\*cli\.Context`, `context.Context`),
-		newReplacer(`EnvVars: \[\]string\{([^}]+)\}`, `Sources: cli.EnvVars(\1)`),
+		newReplacer(`EnvVars: \[\]string\{([^}]+)\}`, `Sources: cli.EnvVars($1)`),
 		newReplacer(`EnvVars: \[\]string`, `Sources: cli.EnvVars`),
 	}
 	for _, r := range replacers {
@@ -130,7 +129,7 @@ func goModTidy(ctx context.Context) error {
 func listFiles(ctx context.Context) ([]string, error) {
 	cmd := exec.CommandContext(ctx, "git", "ls-files")
 	buf := &bytes.Buffer{}
-	cmd.Stdout = io.MultiWriter(os.Stdout, buf)
+	cmd.Stdout = buf
 	if err := cmd.Run(); err != nil {
 		return nil, fmt.Errorf("git ls-files: %w", err)
 	}
