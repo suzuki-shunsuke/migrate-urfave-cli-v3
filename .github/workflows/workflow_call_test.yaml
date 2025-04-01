@@ -1,0 +1,27 @@
+---
+name: test (workflow_call)
+on: workflow_call
+permissions: {}
+jobs:
+  go-test:
+    uses: suzuki-shunsuke/go-test-full-workflow/.github/workflows/test.yaml@7fc75812b57545fe85aaa397f3dd899d4b89241b # v3.2.0
+    with:
+      aqua_version: v2.46.0
+    permissions:
+      pull-requests: write
+      contents: read
+
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-go@0aaccfd150d50ccaeb58ebd88d36e91967a5f35b # v5.4.0
+        with:
+          go-version-file: go.mod
+
+      - run: git ls-files | xargs go run ./cmd/migrate-urfave-cli-v3
+      - run: diff test/main.go test/main.go.expected
