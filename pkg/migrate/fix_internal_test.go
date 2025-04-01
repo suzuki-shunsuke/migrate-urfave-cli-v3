@@ -6,7 +6,7 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-func Test_fixCode(t *testing.T) {
+func Test_fixCode(t *testing.T) { //nolint:funlen
 	t.Parallel()
 	tests := []struct {
 		name string
