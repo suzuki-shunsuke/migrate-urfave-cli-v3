@@ -17,7 +17,7 @@ func newReplacers() ([]*Replacer, error) {
 		newReplacer(`cli\.NewApp\(\)`, `&cli.Command{}`),
 		newReplacer(`\(([^ ]+?) \*cli\.Context\) error`, `(ctx context.Context, $1 *cli.Command) error`),
 		newReplacer(`\(\*cli\.Context\) error`, `(context.Context, *cli.Command) error`),
-		newReplacer(`ExitErrHandler = func\(\*cli\.Context, error\)`, `ExitErrHandler = func(context\.Context, *cli.Command, error)`),
+		newReplacer(`ExitErrHandler = func\(\*cli\.Context, error\)`, `ExitErrHandler = func(context.Context, *cli.Command, error)`),
 		newReplacer(`\*cli\.Context`, `context.Context`),
 		newReplacer(`EnvVars: \[\]string\{([^}]+)\}`, `Sources: cli.EnvVars($1)`),
 		newReplacer(`EnvVars: \[\]string`, `Sources: cli.EnvVars`),
