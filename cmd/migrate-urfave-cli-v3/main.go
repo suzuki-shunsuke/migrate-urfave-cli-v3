@@ -28,7 +28,7 @@ type Replacer struct {
 func (r *Replacer) Init() error {
 	re, err := regexp.Compile(r.pattern)
 	if err != nil {
-		return err
+		return fmt.Errorf("compile a replacer pattern (regular expression): %w", err)
 	}
 	r.regexp = re
 	return nil
@@ -101,10 +101,7 @@ func fixFile(file string, replacers []*Replacer) error {
 	if err != nil {
 		return fmt.Errorf("read a file %s: %w", file, err)
 	}
-	code, err = fixCode(code, replacers)
-	if err != nil {
-		return fmt.Errorf("fix code: %w", err)
-	}
+	code = fixCode(code, replacers)
 	stat, err := os.Stat(file)
 	if err != nil {
 		return fmt.Errorf("stat a file %s: %w", file, err)
@@ -115,11 +112,11 @@ func fixFile(file string, replacers []*Replacer) error {
 	return nil
 }
 
-func fixCode(code []byte, replacers []*Replacer) ([]byte, error) {
+func fixCode(code []byte, replacers []*Replacer) []byte {
 	for _, r := range replacers {
 		code = r.Replace(code)
 	}
-	return code, nil
+	return code
 }
 
 func goModTidy(ctx context.Context) error {
@@ -135,7 +132,7 @@ func listFiles(ctx context.Context) ([]string, error) {
 	buf := &bytes.Buffer{}
 	cmd.Stdout = io.MultiWriter(os.Stdout, buf)
 	if err := cmd.Run(); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("git ls-files: %w", err)
 	}
 	return strings.Split(strings.TrimSpace(buf.String()), "\n"), nil
 }
