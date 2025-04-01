@@ -18,5 +18,5 @@ func main() {
 func run(args []string) error {
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer cancel()
-	return migrate.Run(ctx, args)
+	return migrate.Run(ctx, args) //nolint:wrapcheck
 }
