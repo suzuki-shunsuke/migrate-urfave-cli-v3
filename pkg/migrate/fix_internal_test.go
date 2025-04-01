@@ -29,6 +29,21 @@ func Test_fixCode(t *testing.T) { //nolint:funlen
 			want: `cli.Command{}`,
 		},
 		{
+			name: "*cli.Author",
+			code: `*cli.Author`,
+			want: `any`,
+		},
+		{
+			name: "&cli.Author",
+			code: `&cli.Author`,
+			want: `any`,
+		},
+		{
+			name: "cli.Author",
+			code: `cli.Author`,
+			want: `any`,
+		},
+		{
 			name: "EnableBashCompletion",
 			code: `EnableBashCompletion: true`,
 			want: `EnableShellCompletion: true`,

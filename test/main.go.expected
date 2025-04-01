@@ -11,7 +11,13 @@ import (
 func main() {
 	_ = &cli.Command{}
 	app := &cli.Command{
-		Name:                  "example",
+		Name: "example",
+		Authors: []any{
+			{
+				Name:  "name",
+				Email: "email",
+			},
+		},
 		EnableShellCompletion:  true,
 		CustomRootCommandHelpTemplate: "{{.Name}} - {{.Usage}}",
 		ExitErrHandler: func(_ context.Context, err error) {

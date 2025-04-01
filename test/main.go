@@ -11,7 +11,13 @@ import (
 func main() {
 	_ = cli.NewApp()
 	app := &cli.App{
-		Name:                  "example",
+		Name: "example",
+		Authors: []*cli.Author{
+			{
+				Name:  "name",
+				Email: "email",
+			},
+		},
 		EnableBashCompletion:  true,
 		CustomAppHelpTemplate: "{{.Name}} - {{.Usage}}",
 		ExitErrHandler: func(_ *cli.Context, err error) {
