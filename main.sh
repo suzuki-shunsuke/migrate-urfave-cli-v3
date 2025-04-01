@@ -13,7 +13,7 @@ patterns=(
 	's|\(([^ ]+?) \*cli\.Context\) error|(ctx context.Context, \1 *cli.Command) error|'
 	's|\(\*cli\.Context\) error|(context.Context, *cli.Command) error|'
 	's|\*cli\.Context|context.Context|'
-	's|EnvVars: \[\]string|Sources: EnvVars|'
+	's|EnvVars: \[\]string|Sources: cli.EnvVars|'
 )
 
 while read -r file; do
