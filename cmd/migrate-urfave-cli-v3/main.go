@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	if err := run(); err != nil {
+	if err := run(os.Args); err != nil {
 		log.Fatal(err)
 	}
 }
@@ -69,16 +69,20 @@ func newReplacers() ([]*Replacer, error) {
 	return replacers, nil
 }
 
-func run() error {
+func run(args []string) error {
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer cancel()
 	replacers, err := newReplacers()
 	if err != nil {
 		return fmt.Errorf("new replacers: %w", err)
 	}
-	files, err := listFiles(ctx)
-	if err != nil {
-		return fmt.Errorf("list files: %w", err)
+	files := args[1:]
+	if len(files) == 0 {
+		a, err := listFiles(ctx)
+		if err != nil {
+			return fmt.Errorf("list files: %w", err)
+		}
+		files = a
 	}
 	for _, file := range files {
 		if !strings.HasSuffix(file, ".go") {
