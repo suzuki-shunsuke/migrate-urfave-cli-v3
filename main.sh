@@ -10,8 +10,10 @@ patterns=(
 	's|RunContext|Run|'
 	's|Subcommands|Commands|'
 	's|CustomAppHelpTemplate|CustomRootCommandHelpTemplate|'
+	's|cli\.NewApp\(\)|\&cli.Command{}|'
 	's|\(([^ ]+?) \*cli\.Context\) error|(ctx context.Context, \1 *cli.Command) error|'
 	's|\(\*cli\.Context\) error|(context.Context, *cli.Command) error|'
+	's|ExitErrHandler = func\(\*cli\.Context, error\)|ExitErrHandler = func(context\.Context, *cli.Command, error)|'
 	's|\*cli\.Context|context.Context|'
 	's|EnvVars: \[\]string|Sources: EnvVars|'
 )
