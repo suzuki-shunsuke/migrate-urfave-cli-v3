@@ -6,31 +6,26 @@ Probably you need to fix code manually after running this tool, but this tool ma
 
 ## How To Use
 
-### Go
+1. [Install migrate-urfave-cli-v3](INSTALL.md)
+2. Run migrate-urfave-cli-v3
 
 ```sh
-go run github.com/suzuki-shunsuke/migrate-urfave-cli-v3/cmd/migrate-urfave-cli-v3@latest
+migrate-urfave-cli-v3
 ```
 
 By default, this tool finds files by `git ls-files` and filters files by file extension `.go`.
-
 You can also pass migrated files via command line arguments:
 
 ```sh
-go install github.com/suzuki-shunsuke/migrate-urfave-cli-v3/cmd/migrate-urfave-cli-v3@latest
 migrate-urfave-cli-v3 cmd/foo/main.go cmd/bar/main.go
 ```
 
-### Shell Script
+### go run
 
-> [!CAUTION]
-> Please use Go version.
-> We'll remove the shell script when Go version is released.
-
-Download and run the script [main.sh](main.sh).
+Run by `go run`:
 
 ```sh
-curl -Lq https://raw.githubusercontent.com/suzuki-shunsuke/migrate-urfave-cli-v3/refs/heads/main/main.sh | bash
+go run github.com/suzuki-shunsuke/migrate-urfave-cli-v3/cmd/migrate-urfave-cli-v3@latest
 ```
 
 ## Note
