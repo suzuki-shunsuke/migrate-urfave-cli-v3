@@ -24,6 +24,7 @@ func newReplacers() ([]*Replacer, error) {
 		newReplacer(`\*cli\.Context\b`, `context.Context`),
 		newReplacer(`\bEnvVars: \[\]string\{([^}]+)\}`, `Sources: cli.EnvVars($1)`),
 		newReplacer(`\bEnvVars: \[\]string\b`, `Sources: cli.EnvVars`),
+		newReplacer(`\bEnvVars: `, `Sources: `),
 	}
 	for _, r := range replacers {
 		if err := r.Init(); err != nil {
