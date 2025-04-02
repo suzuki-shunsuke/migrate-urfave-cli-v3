@@ -3,6 +3,7 @@ package migrate
 import (
 	"context"
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 )
@@ -31,7 +32,10 @@ func fixCode(code []byte, replacers []*Replacer) []byte {
 }
 
 func goModTidy(ctx context.Context) error {
+	log.Println("[INFO] Running go mod tidy...")
 	cmd := exec.CommandContext(ctx, "go", "mod", "tidy")
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {
 		return fmt.Errorf("go mod tidy: %w", err)
 	}
