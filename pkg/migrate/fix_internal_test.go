@@ -24,6 +24,11 @@ func Test_fixCode(t *testing.T) { //nolint:funlen
 			want: `import "github.com/urfave/cli-altsrc/v3"`,
 		},
 		{
+			name: "import helpall",
+			code: `import "github.com/suzuki-shunsuke/urfave-cli-help-all/helpall"`,
+			want: `import "github.com/suzuki-shunsuke/urfave-cli-v3-help-all/helpall"`,
+		},
+		{
 			name: "cli.App",
 			code: `cli.App{}`,
 			want: `cli.Command{}`,
