@@ -15,6 +15,7 @@ func newReplacers() ([]*Replacer, error) {
 		newReplacer(`RunContext`, `Run`),
 		newReplacer(`Subcommands`, `Commands`),
 		newReplacer(`CustomAppHelpTemplate`, `CustomRootCommandHelpTemplate`),
+		newReplacer(`\.App\.ToFishCompletion`, `.ToFishCompletion`),
 		newReplacer(`cli\.NewApp\(\)`, `&cli.Command{}`),
 		newReplacer(`\(([^ ]+?) \*cli\.Context\) error`, `(ctx context.Context, $1 *cli.Command) error`),
 		newReplacer(`\(\*cli\.Context\) error`, `(context.Context, *cli.Command) error`),

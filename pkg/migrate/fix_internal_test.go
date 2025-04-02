@@ -89,6 +89,11 @@ func Test_fixCode(t *testing.T) { //nolint:funlen
 			want: `context.Context`,
 		},
 		{
+			name: "App.ToFishCompletion",
+			code: `c.App.ToFishCompletion`,
+			want: `c.ToFishCompletion`,
+		},
+		{
 			name: "EnvVars",
 			code: `EnvVars: []string{"FOO", "BAR"}`,
 			want: `Sources: cli.EnvVars("FOO", "BAR")`,
