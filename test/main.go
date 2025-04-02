@@ -34,6 +34,7 @@ func main() {
 						Action: func(c *cli.Context) error {
 							name := c.String("name")
 							age := c.Int("age")
+							c.App.ToFishCompletion()
 							fmt.Fprintln(os.Stdout, name, age)
 							return nil
 						},
