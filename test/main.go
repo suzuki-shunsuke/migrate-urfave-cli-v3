@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/suzuki-shunsuke/urfave-cli-help-all/helpall"
 	"github.com/urfave/cli/v2"
 )
 
@@ -47,6 +48,7 @@ func main() {
 					},
 				},
 			},
+			helpall.New(nil),
 		},
 	}
 	app.RunContext(context.Background(), os.Args)
