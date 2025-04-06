@@ -112,6 +112,11 @@ func Test_fixCode(t *testing.T) { //nolint:funlen
 	"FOO", "BAR",
 )`,
 		},
+		{
+			name: "generate-shell-completion",
+			code: `--generate-bash-completion`,
+			want: `--generate-shell-completion`,
+		},
 	}
 	replacers, err := newReplacers()
 	if err != nil {

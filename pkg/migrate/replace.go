@@ -25,6 +25,7 @@ func newReplacers() ([]*Replacer, error) {
 		newReplacer(`\bEnvVars: \[\]string\{([^}]+)\}`, `Sources: cli.EnvVars($1)`),
 		newReplacer(`\bEnvVars: \[\]string\b`, `Sources: cli.EnvVars`),
 		newReplacer(`\bEnvVars: `, `Sources: `),
+		newReplacer(`generate-bash-completion`, `generate-shell-completion`),
 	}
 	for _, r := range replacers {
 		if err := r.Init(); err != nil {
